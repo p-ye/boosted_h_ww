@@ -31,7 +31,7 @@ docs/DATA_SCHEMA.md
     Expected columns in the common wide event table.
 
 archive/
-    Original scripts, exploratory notebooks, progress slides, and saved plots.
+    Original scripts, exploratory notebooks, PROGRESS SLIDES, and SAVED PLOTS.
 
 docs/references/
     Project proposal and the interaction-network/JEDI-net reference paper.
