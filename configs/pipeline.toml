@@ -1,0 +1,63 @@
+# All relative paths are resolved from the repository root, not the shell's
+# current directory. Edit the sample paths to match the omitted local data.
+
+[paths]
+processed = "data/processed"
+runs = "outputs/runs"
+figures = "outputs/figures"
+
+[preprocessing]
+tree_name = "analysis"
+step_size = "500 MB"
+max_tracks = 30
+# Keep these per-track fields when they exist. Truth-only identity fields are
+# optional, so truth and reconstruction ROOT files can use the same command.
+track_fields = ["Pt", "Eta", "Phi", "dR", "TruthOrigin", "TruthType"]
+dr_branch = "muon_fatjet_dr"
+dr_max = 1.5
+fatjet_mass_branch = "fatJetM"
+fatjet_mass_min = 20.0
+
+[selection]
+fatjet_pt_min = 200.0
+fatjet_mass_min = 40.0
+lepton_fatjet_dr_max = 1.0
+invalid_jet_value = -999.0
+
+[training]
+seed = 42
+batch_size = 128
+epochs = 100
+learning_rate = 0.001
+weight_decay = 0.0
+validation_fraction = 0.10
+test_fraction = 0.10
+patience = 6
+num_workers = 0
+
+# Add or edit samples here. A domain normally contains at least one signal and
+# one background sample. Outputs are kept under data/processed/<domain>/.
+[samples.truth_signal]
+domain = "truth"
+label = 1
+input = "data/raw/truth/signal.root"
+output = "data/processed/truth/signal.parquet"
+
+[samples.truth_background]
+domain = "truth"
+label = 0
+input = "data/raw/truth/background.root"
+output = "data/processed/truth/background.parquet"
+
+[samples.reco_signal]
+domain = "reco"
+label = 1
+input = "data/raw/reco/signal.root"
+output = "data/processed/reco/signal.parquet"
+
+[samples.reco_background]
+domain = "reco"
+label = 0
+input = "data/raw/reco/background.root"
+output = "data/processed/reco/background.parquet"
+
